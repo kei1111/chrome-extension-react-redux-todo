@@ -19,7 +19,7 @@ const App = () => {
                 position="bottom-right"
                 toastOptions={{
                     style: {
-                        fontSize: '1.4rem',
+                        fontSize: '0.8rem',
                     },
                 }}
             />

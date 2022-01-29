@@ -60,7 +60,7 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
             time: new Date().toLocaleString(),
           })
         );
-        // toast.success('Task added successfully');
+        toast.success('Task added successfully');
       }
       if (type === 'update') {
         if (todo.title !== title || todo.status !== status) {

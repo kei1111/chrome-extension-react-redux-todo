@@ -4,8 +4,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 1rem;
-	background: var(--white);
+	background: floralwhite;
 	border-radius: 4px;
 	&:last-child {
 		margin-bottom: 0;
@@ -73,7 +72,7 @@
 	font-size: 1rem;
 	padding: 0.5rem;
 	border-radius: 4px;
-	background-color: var(--gray-1);
+	background-color: antiquewhite;
 	color: var(--black-2);
 	display: flex;
 	align-items: center;
