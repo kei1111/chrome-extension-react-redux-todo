@@ -3,11 +3,8 @@ import { render } from 'react-dom';
 import './index.css';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-
 import App from '../../components/app';
-import reducers from '../../reducers';
-
-let store = createStore(reducers);
+import { store } from '../../app/store';
 
 render(<Provider store={store}>
     <App />
