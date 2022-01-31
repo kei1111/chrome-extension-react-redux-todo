@@ -18,7 +18,15 @@ const boxVariants = {
   unchecked: { background: 'blanchedalmond', transition: { duration: 0.1 } },
 };
 
-function CheckButton({ checked, handleCheck }) {
+interface CheckProps {
+  checked: boolean;
+  handleCheck: any;
+}
+
+const CheckButton: React.FC<CheckProps> = ({
+  checked,
+  handleCheck
+}) => {
   const pathLength = useMotionValue(0);
   const opacity = useTransform(pathLength, [0.05, 0.15], [0, 1]);
 
