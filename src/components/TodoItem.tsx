@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import React, { useEffect, useState } from 'react';
 import { MdDelete, MdEdit } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
-import { deleteTodo, updateTodo } from '../slices/todoSlice';
+import { deleteTodo, todo, updateTodo } from '../slices/todoSlice';
 import styles from '../styles/modules/todoItem.module.scss';
 import { getClasses } from '../utils/getClasses';
 import CheckButton from './CheckButton';
@@ -18,7 +18,7 @@ const child = {
   },
 };
 
-function TodoItem({ todo }) {
+const TodoItem: React.FC<{todo: todo}> = ({todo}) => {
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(false);
   const [updateModalOpen, setUpdateModalOpen] = useState(false);
@@ -32,6 +32,7 @@ function TodoItem({ todo }) {
   }, [todo.status]);
 
   const handleCheck = () => {
+    console.log(checked)
     setChecked(!checked);
     dispatch(
       updateTodo({ ...todo, status: checked ? 'incomplete' : 'complete' })

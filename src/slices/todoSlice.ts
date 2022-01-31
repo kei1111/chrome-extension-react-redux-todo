@@ -7,7 +7,7 @@ const getInitialTodo = () => {
   if (localTodoList) {
     return JSON.parse(localTodoList);
   }
-  window.localStorage.setItem('todoList', []);
+  window.localStorage.setItem('todoList', '');
   return [];
 };
 
@@ -15,6 +15,13 @@ const initialValue = {
   filterStatus: 'all',
   todoList: getInitialTodo(),
 };
+
+export interface todo {
+  id: string;
+  status: string;
+  title: string;
+  time: number;
+}
 
 export const todoSlice = createSlice({
   name: 'todo',
@@ -44,7 +51,7 @@ export const todoSlice = createSlice({
       const todoList = window.localStorage.getItem('todoList');
       if (todoList) {
         const todoListArr = JSON.parse(todoList);
-        todoListArr.forEach((todo) => {
+        todoListArr.forEach((todo: todo) => {
           if (todo.id === action.payload.id) {
             todo.status = action.payload.status;
             todo.title = action.payload.title;
@@ -58,7 +65,7 @@ export const todoSlice = createSlice({
       const todoList = window.localStorage.getItem('todoList');
       if (todoList) {
         const todoListArr = JSON.parse(todoList);
-        todoListArr.forEach((todo, index) => {
+        todoListArr.forEach((todo: todo, index: number) => {
           if (todo.id === action.payload) {
             todoListArr.splice(index, 1);
           }

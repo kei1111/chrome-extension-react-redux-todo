@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import { addTodo, updateTodo } from '../slices/todoSlice';
 import styles from '../styles/modules/modal.module.scss';
 import Button from './Button';
+import { todo } from '../slices/todoSlice';
 
 const dropIn = {
   hidden: {
@@ -29,7 +30,21 @@ const dropIn = {
   },
 };
 
-function TodoModal({ type, modalOpen, setModalOpen, todo }) {
+interface TodoModalProps {
+  type: string;
+  modalOpen: boolean;
+  setModalOpen: any,
+  todo?: todo
+}
+
+const TodoModal: React.FC<TodoModalProps> = ({
+  type,
+  modalOpen,
+  setModalOpen,
+  todo
+}) => {
+  console.log(`sss${modalOpen}`);
+
   const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [status, setStatus] = useState('incomplete');
@@ -44,7 +59,7 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
     }
   }, [type, todo, modalOpen]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     if (title === '') {
       toast.error('Please enter a title');
@@ -63,7 +78,7 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
         toast.success('Task added successfully');
       }
       if (type === 'update') {
-        if (todo.title !== title || todo.status !== status) {
+        if (todo?.title !== title || todo.status !== status) {
           dispatch(updateTodo({ ...todo, title, status }));
           toast.success('Task Updated successfully');
         } else {
@@ -105,7 +120,7 @@ function TodoModal({ type, modalOpen, setModalOpen, todo }) {
               <MdOutlineClose />
             </motion.div>
 
-            <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
+            <form className={styles.form} onSubmit={(e: any) => handleSubmit(e)}>
               <h1 className={styles.formTitle}>
                 {type === 'add' ? 'Add' : 'Update'} TODO
               </h1>
